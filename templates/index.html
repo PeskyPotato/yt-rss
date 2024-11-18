@@ -12,10 +12,9 @@
     <title>YT RSS Feeds</title>
 </head>
 <body>
-    <nav></nav>
     <main>
         <h1>Generate YouTube RSS feeds</h1>
-        <p>Enter a URL for a YouTube Channel to generate the feed URL you can use to subscribe with an RSS reader.</p>
+        <p>Enter a URL for a YouTube Channel to generate the feed URL you can use to subscribe with an RSS reader. Source code can be found on <a href="https://github.com/PeskyPotato/yt-rss">GitHub</a>.</p>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="{{ messages[0][0] }}">
