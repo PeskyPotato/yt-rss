@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  ytrss:
+    image: ytrss:latest
+    ports:
+      - "5005:5000"
+    restart: unless-stopped
