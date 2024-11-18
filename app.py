@@ -17,10 +17,9 @@ def index():
         info = ydl.extract_info(url, download=False)
     
     channel_id = info.get("channel_id")
-    print(url, channel_id)
     data = {
         "channel_id": channel_id,
-        "feed_url": f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}"
+        "feed_url": f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}",
+        "webpage_url": info.get("webpage_url")
     }
-    print(data)
     return render_template("index.html", data=data)
