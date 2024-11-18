@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vexinglyminimal.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"> 
+    <title>YT RSS Feeds</title>
+</head>
+<body>
+    <nav></nav>
+    <main>
+        <h1>Generate YouTube RSS feeds</h1>
+        <p>Enter a URL for a YouTube Channel to generate the feed URL you can use to subscribe with an RSS reader.</p>
+        <div class="segment">
+            <form>
+                <label for="url" action="/api">Enter a YouTube channel:</label>
+                <input type="url" name="url" id="url" placeholder="https://youtube.com/@ABCDEF" pattern="https://.*" size="30" required />
+                <input type="submit" value="Get feed">
+            </form>
+            <div>
+                {% if data is defined %}
+                    <dl>
+                        <dt>Channel ID</dt>
+                        <dd>{{ data.channel_id }}</dd>
+                        <dt>Feed URL</dt>
+                        <dd>{{ data.feed_url }}</dd>
+                    </dl>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

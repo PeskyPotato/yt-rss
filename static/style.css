@@ -1,0 +1,4 @@
+input[type=submit] {
+    background-color: var(--title-background);
+    color: #fff;
+}
