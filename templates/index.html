@@ -16,6 +16,14 @@
     <main>
         <h1>Generate YouTube RSS feeds</h1>
         <p>Enter a URL for a YouTube Channel to generate the feed URL you can use to subscribe with an RSS reader.</p>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="{{ messages[0][0] }}">
+                    {{ messages[0][1] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <div class="segment">
             <form>
                 <label for="url" action="/api">Enter a YouTube channel:</label>

@@ -5,3 +5,6 @@ services:
     ports:
       - "5005:5000"
     restart: unless-stopped
+    environment:
+      SECRET_KEY: secret_goes_here
+

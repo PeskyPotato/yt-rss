@@ -11,7 +11,7 @@ docker build -t ytrss:latest .
 docker compose up -d
 ```
 
-The app will be accessible on 0.0.0.0:5005.
+Remember to change the `SECRET_KEY` environment varialbe in the `docker-compose.yml` file. The app will be accessible on 0.0.0.0:5005.
 
 ## LICENSE
 
