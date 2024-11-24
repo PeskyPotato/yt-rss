@@ -1,7 +1,9 @@
 from flask import Flask, request, render_template, flash
+import os
 import yt_dlp
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
