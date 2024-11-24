@@ -8,6 +8,7 @@ The Flask app is built to run in a Docker container. Follow the steps below to g
 
 ```bash
 docker build -t ytrss:latest .
+cp docker-compose.yml.default docker-compose.yml
 docker compose up -d
 ```
 
