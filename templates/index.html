@@ -7,7 +7,6 @@
     <meta property="og:description" content="Generate YouTube RSS feeds from the channel URL." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://ytrss.pesky.moe/" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='vexinglyminimal.css')}}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}"> 
     <title>YT RSS Feeds</title>
 </head>
@@ -27,7 +26,7 @@
             <form>
                 <label for="url" action="/api">Enter a YouTube channel:</label>
                 <input type="url" name="url" id="url" placeholder="https://youtube.com/@ABCDEF" pattern="https://.*" size="30" required />
-                <input type="submit" value="Get feed">
+                <button type="submit">Get feed</button>
             </form>
             <div>
                 {% if data is defined %}
@@ -43,6 +42,5 @@
             </div>
         </div>
     </main>
-
 </body>
 </html>

@@ -1,4 +1,1 @@
-input[type=submit] {
-    background-color: var(--title-background);
-    color: #fff;
-}
+a,body,button[type=submit]{color:var(--font-color)}:root{--background-color:#1d1f21;--title-background:#323232;--font-color:#c9cacc}@media (prefers-color-scheme:light){:root{--background-color:white;--title-background:#d3d3d3;--font-color:black}}body{background-color:var(--background-color);font-family:monospace;line-height:1.7;font-size:1rem}main{margin:2rem}.segment{border-style:solid;margin:1rem auto;padding:1rem}@media only screen and (max-width:900px){footer,main{width:80vw;margin:0 auto}}@media only screen and (max-width:600px){.segment{width:92%}footer,main{width:90vw;margin:0 auto}}button[type=submit]{background-color:var(--title-background)}.post-info{margin:5px 0;padding:5px;background:var(--title-background)}.post-info-title{font-weight:700}
