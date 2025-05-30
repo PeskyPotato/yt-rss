@@ -11,13 +11,20 @@ def index():
     if not url:
         return render_template("index.html")
 
-    extractors = yt_dlp.extractor.gen_extractors()
-    for e in extractors:
-        if e.suitable(url) and ('youtube' not in e.IE_NAME) and (e.IE_NAME != 'generic'):
-            flash(f"Unsupported URL: {url}", category="post-info")
-            return render_template("index.html")
+    potential_extractors = ["YoutubeTab", "Youtube"]
+    extractor = None
+    for potential_extractor in potential_extractors:
+        match = yt_dlp.extractor.get_info_extractor(potential_extractor)
+        if match.suitable(url):
+            extractor = match
+            break
+
+    if not extractor:
+        flash(f"Unsupported URL: {extractor}", category="post-info")
+        return render_template("index.html")
 
     ydl_opts = {
+        'allowed_extractors': [extractor.IE_NAME],
         'extract_flat': 'in_playlist',
         'extractor_args': {'youtube': {'player_client': ['web']}},
         'playlist_items': '0',
