@@ -32,7 +32,11 @@ def index():
             print(e, url)
             flash(f"Download Error: {url}", category="post-info")
         return render_template("index.html")
-    
+
+    if not info:
+        flash(f"Unsupported URL: {extractor}", category="post-info")
+        return render_template("index.html")
+
     channel_id = info.get("channel_id")
     data = {
         "channel_id": channel_id,
