@@ -18,8 +18,10 @@ def index():
             return render_template("index.html")
 
     ydl_opts = {
+        'extract_flat': 'in_playlist',
+        'extractor_args': {'youtube': {'player_client': ['web']}},
         'playlist_items': '0',
-        'print': 'channel_url'
+        'simulate': True
     }
 
     try:
