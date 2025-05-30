@@ -39,4 +39,10 @@ def index():
         "feed_url": f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}",
         "webpage_url": info.get("webpage_url")
     }
+
+    playlist_id = info.get("id")
+    if playlist_id and playlist_id.startswith("PL"):
+        data["playlist_id"] = playlist_id
+        data["playlist_feed_url"] = f"https://www.youtube.com/feeds/videos.xml?playlist_id={playlist_id}"
+
     return render_template("index.html", data=data)

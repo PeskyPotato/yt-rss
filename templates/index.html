@@ -33,6 +33,12 @@
                     <dl>
                         <dt>YouTube URL</dt>
                         <dd>{{ data.webpage_url }}</dd>
+                        {% if data.playlist_id is defined %}
+                            <dt>Playlist ID</dt>
+                            <dd>{{ data.playlist_id }}</dd>
+                            <dt>Playlist Feed URL</dt>
+                            <dd>{{ data.playlist_feed_url }}</dd>
+                        {% endif %}
                         <dt>Channel ID</dt>
                         <dd>{{ data.channel_id }}</dd>
                         <dt>Feed URL</dt>
