@@ -27,7 +27,9 @@ def index():
         'allowed_extractors': [extractor.IE_NAME],
         'extract_flat': 'in_playlist',
         'extractor_args': {'youtube': {'player_client': ['web']}},
+        'no_warnings': True,
         'playlist_items': '0',
+        'quiet': True,
         'simulate': True
     }
 
