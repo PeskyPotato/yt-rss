@@ -13,7 +13,7 @@
 <body>
     <main>
         <h1>Generate YouTube RSS feeds</h1>
-        <p>Enter a URL for a YouTube Channel to generate the feed URL you can use to subscribe with an RSS reader. Source code can be found on <a href="https://github.com/PeskyPotato/yt-rss">GitHub</a>.</p>
+        <p>Enter a URL for a YouTube channel or playlist to generate the feed URL you can use to subscribe with an RSS reader. Source code can be found on <a href="https://github.com/PeskyPotato/yt-rss">GitHub</a>.</p>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="{{ messages[0][0] }}">
@@ -24,7 +24,7 @@
 
         <div class="segment">
             <form>
-                <label for="url" action="/api">Enter a YouTube channel:</label>
+                <label for="url" action="/api">Channel or playlist URL:</label>
                 <input type="url" name="url" id="url" placeholder="https://youtube.com/@ABCDEF" pattern="https://.*" size="30" required />
                 <button type="submit">Get feed</button>
             </form>
