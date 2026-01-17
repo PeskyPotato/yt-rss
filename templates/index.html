@@ -46,13 +46,19 @@
                         {% if data.video_url is defined %}
                             <dt>Video Feed URL</dt>
                             <dd>{{ data.video_url }}</dd>
-                            <dd><span>&#x272A; Members only</span> {{ data.video_url_members }}</dd>
+                            {% if data.video_url_members is defined %}
+                                <dd><span>&#x272A; Members only</span> {{ data.video_url_members }}</dd>
+                            {% endif %}
                             <dt>Short Video Feed URL</dt>
                             <dd>{{ data.shorts_url }}</dd>
-                            <dd><span>&#x272A; Members only</span> {{ data.shorts_url_members }}</dd>
+                            {% if data.shorts_url_members is defined %}
+                                <dd><span>&#x272A; Members only</span> {{ data.shorts_url_members }}</dd>
+                            {% endif %}
                             <dt>Live Stream Feed URL</dt>
                             <dd>{{ data.live_url }}</dd>
-                            <dd><span>&#x272A; Members only</span> {{ data.live_url_members }}</dd>
+                            {% if data.live_url_members is defined %}
+                                <dd><span>&#x272A; Members only</span> {{ data.live_url_members }}</dd>
+                            {% endif %}
                         {% endif %}
                     </dl>
                 {% endif %}

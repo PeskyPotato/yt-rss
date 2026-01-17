@@ -1,9 +1,22 @@
+import asyncio
 from flask import Flask, request, render_template, flash
+import httpx
 import os
 import yt_dlp
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
+async def check_feeds(urls: dict[str, str]) -> dict[str, str]:
+    """Check multiple feed URLs concurrently and return only the live ones."""
+    async with httpx.AsyncClient(timeout=5.0, http2=True) as client:
+        requests = [client.head(url, follow_redirects=True) for url in urls.values()]
+        responses = await asyncio.gather(*requests, return_exceptions=True)
+    return {
+        key: url
+        for (key, url), resp in zip(urls.items(), responses)
+        if isinstance(resp, httpx.Response) and resp.status_code == 200
+    }
 
 @app.route("/")
 def index():
@@ -57,12 +70,17 @@ def index():
     if "UC" == channel_id[:2]:
         data.update({
             "video_url": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UULF{channel_id[2:]}",
-            "video_url_members": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUMF{channel_id[2:]}",
             "shorts_url": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUSH{channel_id[2:]}",
-            "shorts_url_members": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUMS{channel_id[2:]}",
             "live_url": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UULV{channel_id[2:]}",
-            "live_url_members": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUMV{channel_id[2:]}"
         })
+        members_urls = {
+            "video_url_members": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUMF{channel_id[2:]}",
+            "shorts_url_members": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUMS{channel_id[2:]}",
+            "live_url_members": f"https://www.youtube.com/feeds/videos.xml?playlist_id=UUMV{channel_id[2:]}",
+        }
+        live_members_urls = asyncio.run(check_feeds(members_urls))
+        data.update(live_members_urls)
+
     data.update({
         "channel_id": channel_id,
         "feed_url": f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}",
